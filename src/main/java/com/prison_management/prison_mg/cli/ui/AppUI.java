@@ -32,48 +32,48 @@ public class AppUI {
 
     //감옥 관리 시스템 시작화면 출력
     public static void startScreen() {
-        System.out.println("\n============== 감옥 관리 시스템 ==============");
+        System.out.println("\n============================== 감옥 관리 시스템 ==============================");
         System.out.println("### 1. 수감자 관리 시스템");
         System.out.println("### 2. 형량 관리 시스템");
         System.out.println("### 3. 보석금 관리 시스템");
         System.out.println("### 4. 프로그램 종료");
-        System.out.println("------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     //수감자 관리 시스템 화면 출력
     public static void prisonerManagementScreen() {
-        System.out.println("\n============== 수감자 관리 시스템 ==============");
+        System.out.println("\n============================= 수감자 관리 시스템 =============================");
         System.out.println("### 1. 신규 수감자 추가");
         System.out.println("### 2. 수감자 검색");
         System.out.println("### 3. 수감자 출소");
         System.out.println("### 4. 수감자 전체 검색");
         System.out.println("### 5. 첫 화면으로 가기");
-        System.out.println("--------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     //형량 관리 시스템 화면 출력
     public static void sentenceManagementScreen() {
-        System.out.println("\n============== 형량 관리 시스템 ==============");
+        System.out.println("\n============================== 형량 관리 시스템 ==============================");
         System.out.println("### 1. 형량 추가하기");
         System.out.println("### 2. 형량 감형하기");
         System.out.println("### 3. 첫 화면으로 가기");
-        System.out.println("---------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     //보석 관리 시스템 화면 출력
     public static void bailManagementScreen() {
-        System.out.println("\n============== 보석금 관리 시스템 ==============");
+        System.out.println("\n============================= 보석금 관리 시스템 =============================");
         System.out.println("### 1. 보석금 추가");
         System.out.println("### 2. 보석금 정보 검색");
         System.out.println("### 3. 첫 화면으로 가기");
-        System.out.println("---------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
     //수감자 검색 조건 화면
     public static void showSearchConditionScreen() {
-        System.out.println("\n============== 수감자 검색 조건을 선택하세요. ==============");
+        System.out.println("\n======================= 수감자 검색 조건을 선택하세요. =======================");
         System.out.println("[ 1. 이름검색 | 2. 지역검색 | 3. 죄목검색 | 4. 전체검색 ]");
-        System.out.println("----------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------");
     }
 
 }

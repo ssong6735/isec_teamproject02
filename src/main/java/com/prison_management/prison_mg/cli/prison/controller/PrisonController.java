@@ -24,6 +24,7 @@ public class PrisonController {
     public void start() {
         while (true) {
 
+            // 수감자 관리 시스템 메뉴
             prisonerManagementScreen();
             int selection = inputInteger(">>> ");
 
@@ -91,7 +92,7 @@ public class PrisonController {
 
         int count = prisonerList.size();
         if (count > 0) {
-            System.out.printf("\n============== 검색 결과(총 %d건) ==============\n", count);
+            System.out.printf("\n============================= 검색 결과(총 %d건) =============================\n", count);
             for (Prison prisoner : prisonerList) {
                 System.out.println(prisoner);
             }
@@ -104,7 +105,7 @@ public class PrisonController {
     // 수감자 정보 추가 기능
     private void insertPrisonerData() {
 
-        System.out.println("\n============== 신규 수감자를 등록합니다. ==============");
+        System.out.println("\n========================= 신규 수감자를 등록 합니다. =========================");
         String name = inputString("# 이름: ");
         int age = inputInteger("# 나이: ");
         String area = inputString("# 지역: ");

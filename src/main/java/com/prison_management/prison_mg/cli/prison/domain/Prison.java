@@ -1,7 +1,6 @@
 package com.prison_management.prison_mg.cli.prison.domain;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 //역할, 책임: 이 클래스는 하나의 수감자 정보를 저장할 수 있어야 한다.
 public class Prison {
@@ -12,13 +11,11 @@ public class Prison {
     private int age;                     //나이
     private String area;                 //지역
     private String aCharge;              //죄목
-    private int jailTime;                //형량
-    private LocalDateTime startJailTime; //수감 시작일
-    private LocalDateTime endJailTime;   //출소 예정일
+    private int jailTime;                //형량 (입력: 1년 단위, 출력: 1일단위로 변경)
+    private LocalDate startJailTime;     //수감 시작일
+    private LocalDate endJailTime;       //출소 예정일
     private boolean jailed;              //수감상태 (기본: 제소자, 출소 예정일 7일 이하면: 출소예정자)
 
-    private LocalDate baseDay;
-    private LocalDate targetDay;
 
     //일련번호 (자동으로 붙는 수감자번호)
     private static int uniqueNumber;
@@ -30,12 +27,12 @@ public class Prison {
         this.age = age;
         this.area = area;
         this.aCharge = aCharge;
-        this.jailTime = jailTime;
-        this.startJailTime = LocalDateTime.now();
-        this.endJailTime = startJailTime.plusHours(jailTime);
+        this.jailTime = jailTime * 365; // 년 -> 일
+        this.startJailTime = LocalDate.now(); // 수감시작일 = 오늘 날짜
+//        this.endJailTime = startJailTime.plusDays(jailTime);
+        this.endJailTime = startJailTime.plusDays(jailTime);
 
-        this.baseDay = LocalDate.now();
-        this.targetDay = baseDay.plusDays(jailTime);
+
     }
 
     //getter, setter
@@ -81,17 +78,17 @@ public class Prison {
         this.jailTime = jailTime;
     }
 
-    public LocalDateTime getStartJailTime() {
+    public LocalDate getStartJailTime() {
         return startJailTime;
     }
-    public void setStartJailTime(LocalDateTime startJailTime) {
+    public void setStartJailTime(LocalDate startJailTime) {
         this.startJailTime = startJailTime;
     }
 
-    public LocalDateTime getEndJailTime() {
+    public LocalDate getEndJailTime() {
         return endJailTime;
     }
-    public void setEndJailTime(LocalDateTime endJailTime) {
+    public void setEndJailTime(LocalDate endJailTime) {
         this.endJailTime = endJailTime;
     }
 
@@ -110,37 +107,55 @@ public class Prison {
     }
 
 
-    public LocalDate getBaseDay() {
-        return baseDay;
-    }
-    public void setBaseDay(LocalDate baseDay) {
-        this.baseDay = baseDay;
-    }
+    /*private static String AddDate(String strDate, int year, int month, int day) throws Exception {
+        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+        Date dt = dtFormat.parse(strDate);
+        cal.setTime(dt);
+        cal.add(Calendar.YEAR, year);
+        cal.add(Calendar.MONTH, month);
+        cal.add(Calendar.DATE, day);
+        return dtFormat.format(cal.getTime());
+    }*/
 
-    public LocalDate getTargetDay() {
-        return targetDay;
-    }
-    public void setTargetDay(LocalDate targetDay) {
-        this.targetDay = targetDay;
-    }
+
 
 
 
     //인스턴스 메서드
     public String toString() {
 
-        /*if ((targetDay - LocalDate.now() < 7)) {
+        /*if ((endJailTime - LocalDate.now() < 7)) {
             String jailed = "출소예정자";
         } else {
             String jailed = "제소자";
         }*/
 
-        String jailed = this.jailed ? "대여중" : "대여가능";
+        /*String date = "20200801"; //1년 후 날짜
+        String addYear = AddDate(date, 1, 0, 0); //1달 후 날짜
+        String addMonth = AddDate(date, 0, 1, 0); //1일 후 날짜
+        String addDay = null;
+        try {
+            addDay = AddDate(date, 0, 0, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(addYear); //20210801
+        System.out.println(addMonth); //20200901
+        System.out.println(addDay); //20200802*/
 
-        return String.format("**** 수감자 정보 ****\n" +
-                "이름: %s, 나이: %d, 지역: %s, 죄목: %s, 형량: %d," +
+
+        System.out.println("jailTime" + jailTime);
+        System.out.println("startJailTime" + startJailTime);
+        System.out.println("endJailTime" + endJailTime);
+
+        String jailed = this.jailed ? "제소자" : "출소예정자";
+
+        return String.format("============================== 수감자 정보 안내 ==============================\n" +
+                "수감번호: %d, 이름: %s, 나이: %d, 지역: %s, 죄목: %s, 형량: %d일\n" +
                 "수감 시작일: %s, 출소 예정일: %s, 수감상태: %s\n" +
-                "****************", name, age, area, aCharge, jailTime, startJailTime,endJailTime, jailed);
+                "==============================================================================",
+                prisonerNumber, name, age, area, aCharge, jailTime, startJailTime, endJailTime, jailed);
     }
 
 

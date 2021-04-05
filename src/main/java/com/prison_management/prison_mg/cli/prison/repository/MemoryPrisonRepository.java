@@ -47,13 +47,12 @@ public class MemoryPrisonRepository implements PrisonRepository {
     public void addprisoner(Prison prison) { // 추가
         prisonMemoryDB.put(prison.getPrisonerNumber(), prison);
     }
-
     @Override
     public List<Prison> searchPrisonerList(String keyword, SearchCondition condition) { // 조건 검색
 
         // 호출부에 전달할 검색데이터 리스트
         List<Prison> results = null;
-
+        // 검색조건 선택
         switch (condition) {
             case NAME:
                 results = search(keyword, (k, p) -> k.equals(p.getName()));
@@ -77,13 +76,13 @@ public class MemoryPrisonRepository implements PrisonRepository {
         return results;
     }
 
-    private List<Prison> search(String keyword, PrisonPredicate mp) {
+    private List<Prison> search(String keyword, PrisonPredicate pp) {
         List<Prison> prisonList = new ArrayList<>();
         for (int key : prisonMemoryDB.keySet()) {
             Prison prison = prisonMemoryDB.get(key);
 
             // 검색 키워드와 제목이 일치하는 prison 만 리스트에 추가
-            if (mp.test(keyword, prison)) {
+            if (pp.test(keyword, prison)) {
                 prisonList.add(prison);
             }
         }
@@ -95,7 +94,6 @@ public class MemoryPrisonRepository implements PrisonRepository {
     public Prison searchPrisonOne(int serialNumber) { // 1개 검색
         return prisonMemoryDB.get(serialNumber);
     }
-
     @Override
     public void removePrison(int serialNumber) { // 삭제
         prisonMemoryDB.remove(serialNumber);
