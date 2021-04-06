@@ -125,4 +125,19 @@ public class PrisonController {
                 .forEach(m -> System.out.println(m));*/
 
     }
+
+    // 수감자 정보 삭제 기능 (출소)
+    private void deletePrisonerData(List<Integer> prisonerNumList) {
+        System.out.println("\n## 출소처리 할 수감자의 고유번호를 입력하세요.");
+        int delPrisonerNum = inputInteger(">>> ");
+
+        if (prisonerNumList.contains(delPrisonerNum)) {
+            Prison delPrisoner = PrisonRepository.removePrison(delPrisonerNum);
+            System.out.printf("\n## %s[%s] 님의 회원정보가 정상 삭제되었습니다.\n",
+                    delPrisoner.getUserName(), delPrisoner.getPhoneNumber());
+        } else {
+            System.out.println("\n## 검색한 회원의 회원번호로만 삭제할 수 있습니다.");
+        }
+    }
+
 }
