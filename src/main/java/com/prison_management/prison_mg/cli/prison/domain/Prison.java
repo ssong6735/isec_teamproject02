@@ -16,9 +16,7 @@ public class Prison {
     private LocalDate endJailTime;       //출소 예정일
     private boolean jailed;              //수감상태 (기본: 제소자, 출소 예정일 7일 이하면: 출소예정자)
 
-
-    //일련번호 (자동으로 붙는 수감자번호)
-    private static int uniqueNumber;
+    private static int uniqueNumber;     //일련번호 (자동으로 붙는 수감자번호)
 
     //생성자: (이 객체가 생성될때 사용자한테 받아야 할 정보가 무엇인가?)
     public Prison(String name, int age, String area, String aCharge, int jailTime) {
@@ -29,7 +27,6 @@ public class Prison {
         this.aCharge = aCharge;
         this.jailTime = jailTime * 365; // 년 -> 일
         this.startJailTime = LocalDate.now(); // 수감시작일 = 오늘 날짜
-//        this.endJailTime = startJailTime.plusDays(jailTime);
         this.endJailTime = startJailTime.plusDays(jailTime);
 
 
@@ -124,26 +121,6 @@ public class Prison {
 
     //인스턴스 메서드
     public String toString() {
-
-        /*if ((endJailTime - LocalDate.now() < 7)) {
-            String jailed = "출소예정자";
-        } else {
-            String jailed = "제소자";
-        }*/
-
-        /*String date = "20200801"; //1년 후 날짜
-        String addYear = AddDate(date, 1, 0, 0); //1달 후 날짜
-        String addMonth = AddDate(date, 0, 1, 0); //1일 후 날짜
-        String addDay = null;
-        try {
-            addDay = AddDate(date, 0, 0, 1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(addYear); //20210801
-        System.out.println(addMonth); //20200901
-        System.out.println(addDay); //20200802*/
-
 
         System.out.println("jailTime" + jailTime);
         System.out.println("startJailTime" + startJailTime);
