@@ -60,7 +60,7 @@ public class AppUI {
         System.out.println("------------------------------------------------------------------------------");
     }
 
-    //보석 관리 시스템 화면 출력
+    //보석금 관리 시스템 화면 출력
     public static void bailManagementScreen() {
         System.out.println("\n============================= 보석금 관리 시스템 =============================");
         System.out.println("### 1. 보석금 추가");
@@ -72,7 +72,7 @@ public class AppUI {
     //수감자 검색 조건 화면
     public static void showSearchConditionScreen() {
         System.out.println("\n======================= 수감자 검색 조건을 선택하세요. =======================");
-        System.out.println("[ 1. 이름검색 | 2. 지역검색 | 3. 죄목검색 | 4. 전체검색 ]");
+        System.out.println("[ 1. 이름검색 | 2. 지역검색 | 3. 죄목검색 ]");
         System.out.println("------------------------------------------------------------------------------");
     }
 

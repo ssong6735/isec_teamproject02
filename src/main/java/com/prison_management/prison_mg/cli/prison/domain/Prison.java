@@ -19,7 +19,7 @@ public class Prison {
     private static int uniqueNumber;     //일련번호 (자동으로 붙는 수감자번호)
 
     //생성자: (이 객체가 생성될때 사용자한테 받아야 할 정보가 무엇인가?)
-    public Prison(String name, int age, String area, String aCharge, int jailTime ,int endJailTime) {
+    public Prison(String name, int age, String area, String aCharge, int jailTime) {
         this.prisonerNumber = ++uniqueNumber;
         this.name = name;
         this.age = age;
@@ -104,31 +104,13 @@ public class Prison {
     }
 
 
-    /*private static String AddDate(String strDate, int year, int month, int day) throws Exception {
-        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
-        Calendar cal = Calendar.getInstance();
-        Date dt = dtFormat.parse(strDate);
-        cal.setTime(dt);
-        cal.add(Calendar.YEAR, year);
-        cal.add(Calendar.MONTH, month);
-        cal.add(Calendar.DATE, day);
-        return dtFormat.format(cal.getTime());
-    }*/
-
-
-
-
-
     //인스턴스 메서드
     public String toString() {
 
-        System.out.println("jailTime" + jailTime);
-        System.out.println("startJailTime" + startJailTime);
-        System.out.println("endJailTime" + endJailTime);
-
         String jailed = this.jailed ? "제소자" : "출소예정자";
 
-        return String.format("============================== 수감자 정보 안내 ==============================\n" +
+        return String.format("" +
+//                        "============================== 수감자 정보 안내 ==============================\n" +
                 "수감번호: %d, 이름: %s, 나이: %d, 지역: %s, 죄목: %s, 형량: %d일\n" +
                 "수감 시작일: %s, 출소 예정일: %s, 수감상태: %s\n" +
                 "==============================================================================",
