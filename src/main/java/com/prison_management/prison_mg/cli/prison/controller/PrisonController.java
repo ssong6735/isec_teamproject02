@@ -4,9 +4,7 @@ import com.prison_management.prison_mg.cli.prison.domain.Prison;
 import com.prison_management.prison_mg.cli.prison.domain.SearchCondition;
 import com.prison_management.prison_mg.cli.prison.repository.MemoryPrisonRepository;
 import com.prison_management.prison_mg.cli.prison.repository.PrisonRepository;
-
 import java.util.List;
-
 import static com.prison_management.prison_mg.cli.prison.domain.SearchCondition.*;
 import static com.prison_management.prison_mg.cli.ui.AppUI.*;
 
@@ -39,6 +37,7 @@ public class PrisonController {
                     break;
                 case 3:
                     // 수감자 출소
+                    deletePrisonerData();
                     break;
                 case 4:
                     // 수감자 전체검색
@@ -73,15 +72,9 @@ public class PrisonController {
                 condition = ACHARGE;
                 System.out.println("\n## 죄목으로 검색합니다.");
                 break;
-            case 4:
-                condition = ALL;
-                System.out.println("\n## 전체정보를 검색합니다.");
-                break;
             default:
                 System.out.println("\n## 잘못 입력했습니다.");
-
         }
-
         String keyword = "";
         if (condition != ALL) {
             keyword = inputString("# 검색어: ");
@@ -92,19 +85,17 @@ public class PrisonController {
 
         int count = prisonerList.size();
         if (count > 0) {
-            System.out.printf("\n============================= 검색 결과(총 %d건) =============================\n", count);
+            System.out.printf("\n============================= 검색 결과 (총 %d건) =============================\n", count);
             for (Prison prisoner : prisonerList) {
                 System.out.println(prisoner);
             }
         } else {
             System.out.println("\n### 검색 결과가 없습니다.");
         }
-
     }
 
     // 수감자 정보 추가 기능
     private void insertPrisonerData() {
-
         System.out.println("\n========================= 신규 수감자를 등록 합니다. =========================");
         String name = inputString("# 이름: ");
         int age = inputInteger("# 나이: ");
@@ -118,26 +109,32 @@ public class PrisonController {
         // 저장 명령
         prisonRepository.addprisoner(newPrison);
         System.out.printf("\n### [%s]의 수감자 정보가 정상 추가되었습니다.\n", newPrison.getName());
-
-        /*// TEST "컨트롤러를 통해 영화 정보를 입력하면 잘 저장되어야 한다."
-        System.out.println("===============================");
-        movieRepository.searchMovieList("", SearchCondition.ALL)
-                .forEach(m -> System.out.println(m));*/
-
     }
 
     // 수감자 정보 삭제 기능 (출소)
-    private void deletePrisonerData(List<Integer> prisonerNumList) {
-        System.out.println("\n## 출소처리 할 수감자의 고유번호를 입력하세요.");
-        int delPrisonerNum = inputInteger(">>> ");
+    private void deletePrisonerData() {
+        System.out.println("\n## 출소처리 할 수감자의 수감번호를 입력해주세요.");
+        int delTargetNum = inputInteger(">>> ");
 
-        if (prisonerNumList.contains(delPrisonerNum)) {
-            Prison delPrisoner = PrisonRepository.removePrison(delPrisonerNum);
-            System.out.printf("\n## %s[%s] 님의 회원정보가 정상 삭제되었습니다.\n",
-                    delPrisoner.getUserName(), delPrisoner.getPhoneNumber());
+        // delTargetNum 을 prisonerNumber 과 비교해서 해당 수감자 찾기
+        Prison prison = prisonRepository.searchPrisonOne(delTargetNum);
+        if (prison != null) {
+            // 수감자 정보 출력
+            System.out.println(prison);
+            // 삭제여부 한번더 확인
+            System.out.println("\n[ 1. 출소처리 | 2. 돌아가기 ]");
+            int selection = inputInteger(">>> ");
+            if (selection == 1) {
+                // 삭제
+                prisonRepository.removePrisoner(prison.getPrisonerNumber());
+                System.out.printf("\n수감번호 %d번 [%s]을(를) 출소처리 하였습니다.\n\n", prison.getPrisonerNumber(),prison.getName());
+            } else {
+                return;
+            }
         } else {
-            System.out.println("\n## 검색한 회원의 회원번호로만 삭제할 수 있습니다.");
+            System.out.println("## 조회 결과가 없습니다.");
         }
     }
+
 
 }

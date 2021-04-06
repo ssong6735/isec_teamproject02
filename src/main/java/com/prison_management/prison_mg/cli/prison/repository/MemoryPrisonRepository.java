@@ -66,10 +66,6 @@ public class MemoryPrisonRepository implements PrisonRepository {
             case ALL:
                 results = search(keyword, (k, p) -> true);
                 break;
-
-            /*case POSSIBLE:
-                results = search(keyword, (k, p) -> !p.isRental());
-                break;*/
             default:
                 return null;
         }
@@ -91,12 +87,12 @@ public class MemoryPrisonRepository implements PrisonRepository {
 
 
     @Override
-    public Prison searchPrisonOne(int serialNumber) { // 1개 검색
-        return prisonMemoryDB.get(serialNumber);
+    public Prison searchPrisonOne(int prisonNumber) { // 1개 검색
+        return prisonMemoryDB.get(prisonNumber);
     }
     @Override
-    public void removePrison(int serialNumber) { // 삭제
-        prisonMemoryDB.remove(serialNumber);
+    public void removePrisoner(int prisonNumber) { // 삭제
+        prisonMemoryDB.remove(prisonNumber);
     }
 
     //수감자 검색 조건을 위한 인터페이스

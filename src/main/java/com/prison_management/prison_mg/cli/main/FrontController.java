@@ -8,19 +8,19 @@ public class FrontController {
     // 분기 결정 기능
     public static void chooseSystem(int selection) {
 
+        // 감옥 관리 시스템 메뉴
         switch (selection) {
-            case 1:
-//                System.out.println("# 수감자 관리 시스템을 시작합니다.");
+            case 1: // 수감자 관리
                 PrisonController prisonController = new PrisonController();
                 prisonController.start();
                 break;
-            case 2:
+            case 2: // 형량 관리
                 System.out.println("# 형량 관리 시스템을 시작합니다.");
                 break;
-            case 3:
+            case 3: // 보석금 관리
                 System.out.println("# 보석금 관리 시스템을 시작합니다.");
                 break;
-            case 4:
+            case 4: // 프로그램 종료
                 System.out.println("프로그램을 종료합니다.");
                 System.exit(0);
             default:
