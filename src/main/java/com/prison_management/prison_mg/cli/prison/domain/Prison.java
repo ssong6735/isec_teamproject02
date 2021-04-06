@@ -21,7 +21,7 @@ public class Prison {
     private static int uniqueNumber;
 
     //생성자: (이 객체가 생성될때 사용자한테 받아야 할 정보가 무엇인가?)
-    public Prison(String name, int age, String area, String aCharge, int jailTime) {
+    public Prison(String name, int age, String area, String aCharge, int jailTime ,int endJailTime) {
         this.prisonerNumber = ++uniqueNumber;
         this.name = name;
         this.age = age;
