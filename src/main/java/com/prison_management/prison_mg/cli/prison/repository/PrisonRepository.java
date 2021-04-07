@@ -27,10 +27,7 @@ public interface PrisonRepository {
 
     //형량 추가
     List<Prison> plusJailTime(int jailTime);
-    }
-    //    //형량 추가 기능
-//    List<Prison> plusJailTime(int jailTime);
-//
+}
+
 //    //형량 감소 기능
 //    void minusJailTime(int jailTime);
-}

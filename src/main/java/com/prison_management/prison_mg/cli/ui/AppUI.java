@@ -46,8 +46,7 @@ public class AppUI {
         System.out.println("### 1. 신규 수감자 추가");
         System.out.println("### 2. 수감자 검색");
         System.out.println("### 3. 수감자 출소");
-        System.out.println("### 4. 수감자 전체 검색");
-        System.out.println("### 5. 첫 화면으로 가기");
+        System.out.println("### 4. 첫 화면으로 가기");
         System.out.println("------------------------------------------------------------------------------");
     }
 
@@ -72,7 +71,21 @@ public class AppUI {
     //수감자 검색 조건 화면
     public static void showSearchConditionScreen() {
         System.out.println("\n======================= 수감자 검색 조건을 선택하세요. =======================");
-        System.out.println("[ 1. 이름검색 | 2. 지역검색 | 3. 죄목검색 ]");
+        System.out.println("[ 1. 이름검색 | 2. 지역검색 | 3. 죄목검색 | 4. 전체검색 ]");
+        System.out.println("------------------------------------------------------------------------------");
+    }
+
+    // 형량 추가 조건 화면
+    public static void showInsertConditionScreen() {
+        System.out.println("\n======================= 형량 추가 조건을 선택하세요. =======================");
+        System.out.println("[ 1. 이름검색으로 추가 | 2. 죄목검색으로 추가 ]");
+        System.out.println("------------------------------------------------------------------------------");
+    }
+
+    //보석금 검색 조건 화면
+    public static void showSearchJewelryScreen() {
+        System.out.println("\n======================= 보석금 검색 조건을 선택하세요. =======================");
+        System.out.println("[ 1. 강력범죄 | 2. 중범죄 | 3. 경범죄 ]");
         System.out.println("------------------------------------------------------------------------------");
     }
 

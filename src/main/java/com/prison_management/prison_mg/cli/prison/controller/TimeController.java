@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import static com.prison_management.prison_mg.cli.prison.domain.SearchCondition.*;
+import static com.prison_management.prison_mg.cli.prison.domain.SearchCondition.SPECIAL;
 import static com.prison_management.prison_mg.cli.ui.AppUI.*;
+import static com.prison_management.prison_mg.cli.ui.AppUI.showInsertConditionScreen;
 
 //형량 관리 시스템 분기 제어
 public class TimeController<time> {

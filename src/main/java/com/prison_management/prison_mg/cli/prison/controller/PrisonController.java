@@ -40,9 +40,6 @@ public class PrisonController {
                     deletePrisonerData();
                     break;
                 case 4:
-                    // 수감자 전체검색
-                    break;
-                case 5:
                     // 첫화면으로 돌아가기
                     return;
                 default:
@@ -71,6 +68,10 @@ public class PrisonController {
             case 3:
                 condition = ACHARGE;
                 System.out.println("\n## 죄목으로 검색합니다.");
+                break;
+            case 4:
+                condition = ALL;
+                System.out.println("\n## 전체정보를 검색합니다.");
                 break;
             default:
                 System.out.println("\n## 잘못 입력했습니다.");

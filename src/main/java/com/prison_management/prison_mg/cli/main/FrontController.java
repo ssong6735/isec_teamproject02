@@ -1,5 +1,6 @@
 package com.prison_management.prison_mg.cli.main;
 
+import com.prison_management.prison_mg.cli.prison.controller.BailController;
 import com.prison_management.prison_mg.cli.prison.controller.PrisonController;
 import com.prison_management.prison_mg.cli.prison.controller.TimeController;
 
@@ -17,10 +18,11 @@ public class FrontController {
                 break;
             case 2: // 형량 관리
                 TimeController timeController = new TimeController();
-                timeController.start(); 
+                timeController.start();
                 break;
             case 3: // 보석금 관리
-                System.out.println("# 보석금 관리 시스템을 시작합니다.");
+                BailController bailController = new BailController();
+                bailController.start();
                 break;
             case 4: // 프로그램 종료
                 System.out.println("프로그램을 종료합니다.");
