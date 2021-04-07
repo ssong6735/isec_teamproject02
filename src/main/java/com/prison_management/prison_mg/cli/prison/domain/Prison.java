@@ -106,40 +106,12 @@ public class Prison {
     }
 
 
-    /*private static String AddDate(String strDate, int year, int month, int day) throws Exception {
-        SimpleDateFormat dtFormat = new SimpleDateFormat("yyyyMMdd");
-        Calendar cal = Calendar.getInstance();
-        Date dt = dtFormat.parse(strDate);
-        cal.setTime(dt);
-        cal.add(Calendar.YEAR, year);
-        cal.add(Calendar.MONTH, month);
-        cal.add(Calendar.DATE, day);
-        return dtFormat.format(cal.getTime());
-    }*/
-
-
-
-
-
     //인스턴스 메서드
     public String toString() {
-        /*
-        LocalDate otherDay = startJailTime(8);
-        if ((endJailTime < 7)) {
-            String jailed = "출소예정자";
-        } else {
-            String jailed = "제소자";
-        }
-        */
-
-
-        System.out.println("jailTime" + jailTime);
-        System.out.println("startJailTime" + startJailTime);
-        System.out.println("endJailTime" + endJailTime);
-
         String jailed = this.jailed ? "제소자" : "출소예정자";
 
-        return String.format("============================== 수감자 정보 안내 ==============================\n" +
+        return String.format("" +
+//                        "============================== 수감자 정보 안내 ==============================\n" +
                 "수감번호: %d, 이름: %s, 나이: %d, 지역: %s, 죄목: %s, 형량: %d일\n" +
                 "수감 시작일: %s, 출소 예정일: %s, 수감상태: %s\n" +
                 "==============================================================================",

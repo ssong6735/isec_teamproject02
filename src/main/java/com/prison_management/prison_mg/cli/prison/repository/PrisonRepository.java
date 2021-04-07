@@ -1,6 +1,5 @@
 package com.prison_management.prison_mg.cli.prison.repository;
 
-
 import com.prison_management.prison_mg.cli.prison.domain.Prison;
 import com.prison_management.prison_mg.cli.prison.domain.SearchCondition;
 
@@ -20,11 +19,11 @@ public interface PrisonRepository {
      */
     List<Prison> searchPrisonerList(String keyword, SearchCondition condition);
 
-    //특정 수감자 1명 검색
+    //특정 수감자 1명 검색 (출소처리할 수감자 검색용으로 사용)
     Prison searchPrisonOne(int prisonNumber);
 
     //특정 수감자 삭제(출소)
-    void removePrison(int serialNumber);
+    void removePrisoner(int prisonNumber);
 
     //형량 추가
     List<Prison> plusJailTime(int jailTime);
@@ -34,7 +33,4 @@ public interface PrisonRepository {
 //
 //    //형량 감소 기능
 //    void minusJailTime(int jailTime);
-
-
-
-
+}

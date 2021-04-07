@@ -68,10 +68,6 @@ public class MemoryPrisonRepository implements PrisonRepository {
             case ALL:
                 results = searchAll();
                 break;
-
-            /*case POSSIBLE:
-                results = searchAll()
-                break;*/
             default:
                 return null;
         }
@@ -132,13 +128,13 @@ public class MemoryPrisonRepository implements PrisonRepository {
 
 
     @Override
-    public Prison searchPrisonOne(int prisonerNumber) { // 1개 검색
-        return prisonMemoryDB.get(prisonerNumber);
+    public Prison searchPrisonOne(int prisonNumber) { // 1개 검색
+        return prisonMemoryDB.get(prisonNumber);
     }
 
     @Override
-    public void removePrison(int prisonerNumber) { // 삭제
-        prisonMemoryDB.remove(prisonerNumber);
+    public void removePrisoner(int prisonNumber) { // 삭제
+        prisonMemoryDB.remove(prisonNumber);
     }
 
     @Override
