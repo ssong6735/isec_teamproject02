@@ -135,6 +135,4 @@ public class PrisonController {
             System.out.println("## 조회 결과가 없습니다.");
         }
     }
-
-
 }
