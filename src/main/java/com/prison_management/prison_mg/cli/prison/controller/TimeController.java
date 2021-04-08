@@ -32,7 +32,7 @@ public class TimeController {
             switch (selection) {
                 case 1:
                     // 형량 추가
-                    insertChargeMinus();
+                    insertChargePlus();
                     break;
                 case 2:
                     // 형량 감형
@@ -47,66 +47,6 @@ public class TimeController {
         }
     }
 
-    private void insertChargeMinus() {
-
-        showInsertConditionScreen();
-        int selection = inputInteger(">>> ");
-
-        SearchCondition condition = ALL;
-        switch (selection) {
-            case 1:
-                condition = NAME;
-                break;
-            case 2:
-                condition = AREA;
-                break;
-            default:
-                System.out.println("\n## 잘 못 입력했습니다. ");
-        }
-        String keyword = "";
-        if (condition != ALL) {
-            keyword = inputString("# 검색: ");
-        }
-        //로직
-        List<Prison> prisonerList = prisonRepository.searchPrisonerList(keyword, condition);
-//        System.out.println("prisonerList = " + prisonerList);
-        int count = prisonerList.size();
-        if (selection == 1) {
-            System.out.println("\n==========================검색 결과==========================");
-            for (Prison prison : prisonerList) {
-                System.out.println(prison);
-            }
-            System.out.println("===========================================================");
-            System.out.print("# 수감번호를 입력: ");
-            int num = sc.nextInt();
-            Prison prison = prisonRepository.searchPrisonOne(num);
-
-            System.out.print("# 감형할 형량을 입력: ");
-            int plusTime = sc.nextInt();
-            prison.setJailTime(plusTime);
-            prison.setEndJailTime(prison.getEndJailTime().plusDays(prison.getJailTime()));
-            System.out.println(prison);
-
-        } else if (selection == 2) {
-            System.out.println("===========================================================");
-            System.out.print("# 수감번호를 입력: ");
-            int num = sc.nextInt();
-            Prison prison = prisonRepository.searchPrisonOne(num);
-
-            System.out.print("# 감형할 형량을 입력: ");
-            int plusTime = sc.nextInt();
-            prison.setJailTime(plusTime);
-            prison.setEndJailTime(prison.getEndJailTime().minusDays(prison.getJailTime()));
-            System.out.println(prison);
-
-        } else {
-            System.out.println("\n# 검색 결과가 없습니다.");
-        }
-    }
-}
-
-/*
-    //형량 관리 시스템 첫번째 기능 코리아
     private void insertChargePlus() {
 
         showInsertConditionScreen();
@@ -122,6 +62,7 @@ public class TimeController {
                 break;
             default:
                 System.out.println("\n## 잘 못 입력했습니다. ");
+                return;
         }
         String keyword = "";
         if (condition != ALL) {
@@ -143,13 +84,63 @@ public class TimeController {
 
             System.out.print("# 추가할 형량을 입력: ");
             int plusTime = sc.nextInt();
-            prison.setJailTime(plusTime);
+            prison.setJailTime(prison.getJailTime() + plusTime);
             prison.setEndJailTime(prison.getEndJailTime().plusDays(prison.getJailTime()));
+            System.out.println(prison);
+
+
+        } else {
+            System.out.println("\n# 검색 결과가 없습니다.");
+        }
+    }
+
+
+    //형량 관리 시스템 첫번째 기능 코리아
+    private void insertChargeMinus() {
+
+        showInsertConditionScreen();
+        int selection = inputInteger(">>> ");
+
+        SearchCondition condition = ALL;
+        switch (selection) {
+            case 1:
+                condition = NAME;
+                break;
+            case 2:
+                condition = AREA;
+                break;
+            default:
+                System.out.println("\n## 잘 못 입력했습니다. ");
+                return;
+        }
+        String keyword = "";
+        if (condition != ALL) {
+            keyword = inputString("# 검색: ");
+        }
+        //로직
+        List<Prison> prisonerList = prisonRepository.searchPrisonerList(keyword, condition);
+//        System.out.println("prisonerList = " + prisonerList);
+        int count = prisonerList.size();
+        if (count > 0) {
+            System.out.println("\n==========================검색 결과==========================");
+            for (Prison prison : prisonerList) {
+                System.out.println(prison);
+            }
+            System.out.println("===========================================================");
+            System.out.print("# 수감번호를 입력: ");
+            int num = sc.nextInt();
+            Prison prison = prisonRepository.searchPrisonOne(num);
+
+            System.out.print("# 감형할 형량을 입력:");
+            int plusTime = sc.nextInt();
+            prison.setJailTime(prison.getJailTime() - plusTime);
+            prison.setEndJailTime(prison.getEndJailTime().minusDays(prison.getJailTime()));
 
             System.out.println(prison);
 
         } else {
             System.out.println("\n# 검색 결과가 없습니다.");
         }
-    }*/
+    }
+}
 

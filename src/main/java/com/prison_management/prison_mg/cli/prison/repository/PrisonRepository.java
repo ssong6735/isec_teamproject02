@@ -25,10 +25,9 @@ public interface PrisonRepository {
     //특정 수감자 삭제(출소)
     void removePrisoner(int prisonNumber);
 
-    //형량 추가
-    List<Prison> plusJailTime(int jailTime);
 //    //형량 감소 기능
 //    void minusJailTime(int jailTime);
+public List<Prison> plusJailTime(int jailTime);
 
     // 보석금 추가
     void addBoilMoney(Prison prison, int insertJewelMoney);

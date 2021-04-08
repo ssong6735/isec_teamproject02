@@ -149,7 +149,7 @@ public class MemoryPrisonRepository implements PrisonRepository {
 
     @Override
     public void addBoilMoney(Prison prison, int insertJewelMoney) {
-        prisonMemoryDB.put(prison.getBailMoney(), insertJewelMoney);
+        prison.setBailMoney(prison.getBailMoney()+ insertJewelMoney);
     }
 
     //Predicate 는 입력값 하나 있다.

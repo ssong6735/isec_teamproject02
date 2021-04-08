@@ -11,7 +11,7 @@ public class Prison {
     private int age;                     //나이
     private String area;                 //지역
     private String aCharge;              //죄목
-    private int jailTime;                //형량 (입력: 1년 단위, 출력: 1일단위로 변경)
+    private int jailTime;                //형량 1일단위
     private LocalDate startJailTime;     //수감 시작일
     private LocalDate endJailTime;       //출소 예정일
     private boolean jailed;              //수감상태 (기본: 제소자, 출소 예정일 7일 이하면: 출소예정자)
@@ -27,7 +27,7 @@ public class Prison {
         this.age = age;
         this.area = area;
         this.aCharge = aCharge;
-        this.jailTime = jailTime; // 년 -> 일
+        this.jailTime = jailTime; // 일
         this.startJailTime = LocalDate.now(); // 수감시작일 = 오늘 날짜
         this.endJailTime = startJailTime.plusDays(jailTime);
 
@@ -123,7 +123,7 @@ public class Prison {
                 "수감 시작일: %s, 출소 예정일: %s, 수감상태: %s, 보석금: %d만원\n" +
                 "==============================================================================",
                 prisonerNumber, name, age, area, aCharge, jailTime, startJailTime, endJailTime, jailed,
-                bailMoney/10000);
+                bailMoney);
     }
 
 

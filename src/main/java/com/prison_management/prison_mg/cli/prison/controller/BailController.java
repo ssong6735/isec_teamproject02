@@ -55,7 +55,7 @@ public class BailController {
             System.out.println(prison);
             System.out.println("얼마를 넣으시겠습니까?(만원)");
             int insertJewelMoney = inputInteger(">>>");
-            System.out.printf("%s에게 %d만원을 넣으시겠습니까?", prison.getName(), insertJewelMoney);
+            System.out.printf("%s쓰레기에게 %d만원을 넣으시겠습니까?", prison.getName(), insertJewelMoney);
             System.out.println("\n[ 1. 예 | 2. 아니오 ]");
             int selection = inputInteger(">>> ");
             if (selection == 1) {
