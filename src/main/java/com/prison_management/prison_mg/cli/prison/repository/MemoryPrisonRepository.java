@@ -16,16 +16,16 @@ public class MemoryPrisonRepository implements PrisonRepository {
 
     private static void insertTestData() {
 //        Prison prison1 = new prisoner("이름","나이","지역","죄목","형량");
-        Prison prison1 = new Prison("김제혁",35,"천안","폭행치사",5000);
-        Prison prison2 = new Prison("명교수",43,"서울","사기",2000);
-        Prison prison3 = new Prison("김민철",52,"광주","살인",25000);
-        Prison prison4 = new Prison("강철두",44,"인천","사기도박",3000);
-        Prison prison5 = new Prison("이주형",23,"대전","상습절도",1000);
-        Prison prison6 = new Prison("유한양",26,"서울","마약복용",1000);
-        Prison prison7 = new Prison("유정우",26,"대전","상해치사",3000);
-        Prison prison8 = new Prison("법자",25,"청주","상습절도",2000);
-        Prison prison9 = new Prison("고박사",31,"부산","배임횡령",5000);
-        Prison prison10 = new Prison("똘마니",24,"인천","상습폭행",4000);
+        Prison prison1 = new Prison("김제혁",35,"천안","폭행치사",1825);
+        Prison prison2 = new Prison("명교수",43,"서울","사기",730);
+        Prison prison3 = new Prison("김민철",52,"광주","살인",9125);
+        Prison prison4 = new Prison("강철두",44,"인천","사기도박",1095);
+        Prison prison5 = new Prison("이주형",23,"대전","상습절도",910);
+        Prison prison6 = new Prison("유한양",26,"서울","마약복용",1825);
+        Prison prison7 = new Prison("유정우",26,"대전","상해치사",4365);
+        Prison prison8 = new Prison("법자",25,"청주","상습절도",545);
+        Prison prison9 = new Prison("고박사",31,"부산","배임횡령",1825);
+        Prison prison10 = new Prison("똘마니",24,"인천","상습폭행",7365);
 
         prisonMemoryDB.put(prison1.getPrisonerNumber(), prison1);
         prisonMemoryDB.put(prison2.getPrisonerNumber(), prison2);
@@ -40,36 +40,28 @@ public class MemoryPrisonRepository implements PrisonRepository {
     }
 
 
+    //수감자 추가
     @Override
     public void addprisoner(Prison prison) { // 추가
         prisonMemoryDB.put(prison.getPrisonerNumber(), prison);
     }
+    //수감자 조건으로 검색
     @Override
-    public Prison searchPrisonOne(int prisonNumber) { // 1개 검색
-        return prisonMemoryDB.get(prisonNumber);
-    }
-    @Override
-    public void removePrisoner(int prisonNumber) { // 삭제
-        prisonMemoryDB.remove(prisonNumber);
-    }
-
-    @Override
-    public List<Prison> searchPrisonerList(String keyword, SearchCondition condition) { // 조건 검색
-
+    public List<Prison> searchPrisonerList(String keyword, SearchCondition condition) {
         // 호출부에 전달할 검색데이터 리스트
         List<Prison> results = null;
         // 검색조건 선택
         switch (condition) {
-            case NAME:
+            case NAME://이름
                 results = search(keyword, (k, p) -> k.equals(p.getName()));
                 break;
-            case AREA:
+            case AREA://지역
                 results = search(keyword, (k, p) -> k.equals(p.getArea()));
                 break;
-            case ACHARGE:
+            case ACHARGE://죄목
                 results = search(keyword, (k, p) -> k.equals(p.getaCharge()));
                 break;
-            case ALL:
+            case ALL://전체
                 results = search(keyword, (k, p) -> true);
                 break;
             default:
@@ -77,8 +69,19 @@ public class MemoryPrisonRepository implements PrisonRepository {
         }
         return results;
     }
+    // 특정수감자 검색(수감번호)
+    @Override
+    public Prison searchPrisonOne(int prisonNumber) { // 1개 검색
+        return prisonMemoryDB.get(prisonNumber);
+    }
+    // 수감자 출소
+    @Override
+    public void removePrisoner(int prisonNumber) { // 삭제
+        prisonMemoryDB.remove(prisonNumber);
+    }
 
-    // 수감자 검색용
+
+    // 수감자 검색용 리스트
     private List<Prison> search(String keyword, PrisonPredicate pp) {
         List<Prison> prisonList = new ArrayList<>();
         for (int key : prisonMemoryDB.keySet()) {
@@ -91,69 +94,33 @@ public class MemoryPrisonRepository implements PrisonRepository {
         return prisonList;
     }
 
-    //이름검색
-    private List<Prison> searchByName(String keyword) {
-        List<Prison> prisonList = new ArrayList<>();
-        for (int key : prisonMemoryDB.keySet()) {
-            Prison prison = prisonMemoryDB.get(key);
 
-            //검색 키워드와 이름이 같은 키워드만 리스트에 추가
-            if (keyword.equals(prison.getName())) {
-                prisonList.add(prison);
-            }
-        }
-        return prisonList;
-    }
-
-    //AREA 검색
-    private List<Prison> searchByArea(String keyword) {
-        List<Prison> prisonList = new ArrayList<>();
-        for (int key : prisonMemoryDB.keySet()) {
-            Prison prison = prisonMemoryDB.get(key);
-
-            if (keyword.equals(prison.getArea())) {
-                prisonList.add(prison);
-            }
-        }
-        return prisonList;
-    }
-
-    //형량 검색
-    private List<Prison> searchByAcharge(String keyword) {
-        List<Prison> prisonList = new ArrayList<>();
-        for (int key : prisonMemoryDB.keySet()) {
-            Prison prisone = prisonMemoryDB.get(key);
-
-            //검색 키워드와 제목이 일치하는 movie만 리스트에 추가
-            if (keyword.equals(prisone.getaCharge())) {
-                prisonList.add(prisone);
-            }
-        }
-        return prisonList;
-    }
-
-    //전체 검색
-    private List<Prison> searchAll() {
-        List<Prison> prisoneList = new ArrayList<>();
-        for (int key : prisonMemoryDB.keySet()) {
-            Prison prison = prisonMemoryDB.get(key);
-            prisoneList.add(prison);
-        }
-        return prisoneList;
-    }
-
+    //형량 추가
     @Override
     public List<Prison> plusJailTime(int jailTime) {
         return Collections.singletonList(prisonMemoryDB.get(jailTime));
     }
 
+
+    //보석금 추가
     @Override
     public void addBoilMoney(Prison prison, int insertJewelMoney) {
-        prison.setBailMoney(prison.getBailMoney()+ insertJewelMoney);
+        prison.setBailMoney(prison.getBailMoney() + insertJewelMoney);
     }
 
-    //Predicate 는 입력값 하나 있다.
-    //predicate는 결과값이 주어진 조건에 만족하는지 아닌지를 확인할때 씀.
+    /*//보석금 추가된 수감자만 검색
+    @Override
+    public List<Prison> searchAddBoilMoney(int boilMoney) {
+        List<Prison> boilList = new ArrayList<>();
+        for (int key : prisonMemoryDB.keySet()) {
+            Prison prison = prisonMemoryDB.get(key);
+            if (boilMoney > 0) {
+                boilList.add(prison);
+            }
+        }
+        return boilList;
+    }*/
+
 
     //수감자 검색 조건을 위한 인터페이스
     @FunctionalInterface // 람다식 검증

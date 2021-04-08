@@ -7,13 +7,11 @@ public class AppMain {
 
     public static void main(String[] args) {
 
+        // 감옥관리 시스템 시작메뉴
         while (true) {
-
             startScreen();
             int selection = AppUI.inputInteger(">>> ");
-
             FrontController.chooseSystem(selection);
-
         }
 
     }

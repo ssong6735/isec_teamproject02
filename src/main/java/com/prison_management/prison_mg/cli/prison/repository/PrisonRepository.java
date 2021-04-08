@@ -13,7 +13,7 @@ public interface PrisonRepository {
 
     //조건별 수감자 검색
     /**
-     * @param keyword 검색어
+     * @param keyword   검색어
      * @param condition 검색 조건
      * @return 검색에 따른 수감자정보 리스트
      */
@@ -25,11 +25,16 @@ public interface PrisonRepository {
     //특정 수감자 삭제(출소)
     void removePrisoner(int prisonNumber);
 
-//    //형량 감소 기능
-//    void minusJailTime(int jailTime);
-public List<Prison> plusJailTime(int jailTime);
+    //형량 추가 기능
+    public List<Prison> plusJailTime(int jailTime);
 
-    // 보석금 추가
+    //형량 감소 기능
+//    void minusJailTime(int jailTime);
+
+    //보석금 추가
     void addBoilMoney(Prison prison, int insertJewelMoney);
-}
+
+    //보석금 추가된 수감자만 검색
+//    Prison searchAddBoilMoney(boolean boilMoneyData);
+    }
 

@@ -17,8 +17,8 @@ public class Prison {
     private boolean jailed;              //수감상태 (기본: 제소자, 출소 예정일 7일 이하면: 출소예정자)
     private int bailMoney;               //보석금
     private int plusTime;                //형량추가
-
     private static int uniqueNumber;     //일련번호 (자동으로 붙는 수감자번호)
+
 
     //생성자: (이 객체가 생성될때 사용자한테 받아야 할 정보가 무엇인가?)
     public Prison(String name, int age, String area, String aCharge, int jailTime) {
@@ -30,8 +30,8 @@ public class Prison {
         this.jailTime = jailTime; // 일
         this.startJailTime = LocalDate.now(); // 수감시작일 = 오늘 날짜
         this.endJailTime = startJailTime.plusDays(jailTime);
-
     }
+
 
     //getter, setter
     public int getPrisonerNumber() {
@@ -115,15 +115,13 @@ public class Prison {
     //인스턴스 메서드
     public String toString() {
 
-        String jailed = this.jailed ? "제소자" : "출소예정자";
+        String jailed = jailTime > 7 ? "제소자" : "출소예정자";
 
-        return String.format("" +
-//                        "============================== 수감자 정보 안내 ==============================\n" +
+        return String.format(
                 "수감번호: %d, 이름: %s, 나이: %d, 지역: %s, 죄목: %s, 형량: %d일\n" +
                 "수감 시작일: %s, 출소 예정일: %s, 수감상태: %s, 보석금: %d만원\n" +
-                "==============================================================================",
-                prisonerNumber, name, age, area, aCharge, jailTime, startJailTime, endJailTime, jailed,
-                bailMoney);
+                "==================================================================================",
+                prisonerNumber, name, age, area, aCharge, jailTime, startJailTime, endJailTime, jailed, bailMoney);
     }
 
 
