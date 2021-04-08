@@ -45,6 +45,15 @@ public class MemoryPrisonRepository implements PrisonRepository {
         prisonMemoryDB.put(prison.getPrisonerNumber(), prison);
     }
     @Override
+    public Prison searchPrisonOne(int prisonNumber) { // 1개 검색
+        return prisonMemoryDB.get(prisonNumber);
+    }
+    @Override
+    public void removePrisoner(int prisonNumber) { // 삭제
+        prisonMemoryDB.remove(prisonNumber);
+    }
+
+    @Override
     public List<Prison> searchPrisonerList(String keyword, SearchCondition condition) { // 조건 검색
 
         // 호출부에 전달할 검색데이터 리스트
@@ -133,24 +142,18 @@ public class MemoryPrisonRepository implements PrisonRepository {
         return prisoneList;
     }
 
-
-    @Override
-    public Prison searchPrisonOne(int prisonNumber) { // 1개 검색
-        return prisonMemoryDB.get(prisonNumber);
-    }
-    @Override
-    public void removePrisoner(int prisonNumber) { // 삭제
-        prisonMemoryDB.remove(prisonNumber);
-    }
-
     @Override
     public List<Prison> plusJailTime(int jailTime) {
         return Collections.singletonList(prisonMemoryDB.get(jailTime));
     }
 
+    @Override
+    public void addBoilMoney(Prison prison, int insertJewelMoney) {
+        prisonMemoryDB.put(prison.getBailMoney(), insertJewelMoney);
+    }
+
     //Predicate 는 입력값 하나 있다.
     //predicate는 결과값이 주어진 조건에 만족하는지 아닌지를 확인할때 씀.
-
 
     //수감자 검색 조건을 위한 인터페이스
     @FunctionalInterface // 람다식 검증
