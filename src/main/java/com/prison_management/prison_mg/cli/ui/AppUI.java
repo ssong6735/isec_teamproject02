@@ -78,7 +78,7 @@ public class AppUI {
     // 형량 추가 조건 화면
     public static void showInsertConditionScreen() {
         System.out.println("\n======================= 형량 추가 조건을 선택하세요. =======================");
-        System.out.println("[ 1. 이름검색               |                2. 지역 검색 ]");
+        System.out.println("[ 1. 이름검색으로 추가 | 2. 죄목검색으로 추가 ]");
         System.out.println("------------------------------------------------------------------------------");
     }
 

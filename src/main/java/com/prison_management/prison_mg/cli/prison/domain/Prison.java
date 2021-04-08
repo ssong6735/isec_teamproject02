@@ -16,7 +16,6 @@ public class Prison {
     private LocalDate endJailTime;       //출소 예정일
     private boolean jailed;              //수감상태 (기본: 제소자, 출소 예정일 7일 이하면: 출소예정자)
     private int bailMoney;               //보석금
-    private int plusTime;                //형량추가
 
     private static int uniqueNumber;     //일련번호 (자동으로 붙는 수감자번호)
 
@@ -30,7 +29,6 @@ public class Prison {
         this.jailTime = jailTime; // 년 -> 일
         this.startJailTime = LocalDate.now(); // 수감시작일 = 오늘 날짜
         this.endJailTime = startJailTime.plusDays(jailTime);
-
     }
 
     //getter, setter
