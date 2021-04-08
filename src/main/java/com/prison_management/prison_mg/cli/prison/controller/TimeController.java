@@ -77,7 +77,7 @@ public class TimeController {
             System.out.println("\n## 추가할 형량을 입력해주세요.");
             int plusTime = inputInteger(">>> ");
             prison.setJailTime(prison.getJailTime() + plusTime);
-            prison.setEndJailTime(prison.getEndJailTime().plusDays(prison.getJailTime()));
+            prison.setEndJailTime(prison.getEndJailTime().plusDays(plusTime));
             System.out.println(prison);
         } else {
             System.out.println("\n# 검색 결과가 없습니다.");
@@ -120,7 +120,7 @@ public class TimeController {
             System.out.println("\n## 감형할 형량을 입력해주세요.");
             int minusTime = inputInteger(">>> ");
             prison.setJailTime(prison.getJailTime() - minusTime);
-            prison.setEndJailTime(prison.getEndJailTime().minusDays(prison.getJailTime()));
+            prison.setEndJailTime(prison.getEndJailTime().minusDays(minusTime));
             System.out.println(prison);
         } else {
             System.out.println("\n# 검색 결과가 없습니다.");
