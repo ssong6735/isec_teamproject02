@@ -118,7 +118,7 @@ public class PrisonController {
             if (selection == 1) {
                 // 삭제
                 prisonRepository.removePrisoner(prison.getPrisonerNumber());
-                System.out.printf("\n수감번호 %d번 [%s]을(를) 출소처리 하였습니다.\n\n", prison.getPrisonerNumber(),prison.getName());
+                System.out.printf("\n수감번호 %d번 [%s]을(를) 출소처리 하였습니다.\n\n", prison.getPrisonerNumber(), prison.getName());
             } else {
                 return;
             }

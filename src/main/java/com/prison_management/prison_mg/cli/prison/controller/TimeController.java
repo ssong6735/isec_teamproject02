@@ -66,7 +66,7 @@ public class TimeController {
         List<Prison> prisonerList = prisonRepository.searchPrisonerList(keyword, condition);
         int count = prisonerList.size();
         if (count > 0) {
-            System.out.printf("\n=============================== 검색 결과 (총 1건) ===============================\n", count);
+            System.out.printf("\n=============================== 검색 결과 (총 %d건) ===============================\n", count);
             for (Prison prison : prisonerList) {
                 System.out.println(prison);
             }
@@ -109,7 +109,7 @@ public class TimeController {
         List<Prison> prisonerList = prisonRepository.searchPrisonerList(keyword, condition);
         int count = prisonerList.size();
         if (count > 0) {
-            System.out.printf("\n=============================== 검색 결과 (총 1건) ===============================\n", count);
+            System.out.printf("\n=============================== 검색 결과 (총 %d건) ===============================\n", count);
             for (Prison prison : prisonerList) {
                 System.out.println(prison);
             }

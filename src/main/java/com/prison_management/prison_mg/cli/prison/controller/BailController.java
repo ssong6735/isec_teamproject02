@@ -28,12 +28,12 @@ public class BailController {
             switch (selection){
                 case 1 :
                     //보석금 추가
-                    insertjewelryData();
+                    insertBailData();
                     break;
                 /*case 2 :
                     //보석금 정보 검색
                     // 보석금이 있는 수감자만 검색되게
-                    showJewelryData();
+                    showBailData();
                     break;*/
                 case 2 :
                     //첫화면으로 돌아가기
@@ -46,23 +46,23 @@ public class BailController {
 
 
     // 보석금 추가 기능
-    private void insertjewelryData() {
+    private void insertBailData() {
         // 수감번호 검색 -> 보석금 추가할 수감자 선택 -> 보석금 추가 -> 추가 후 정보 출력
         System.out.println("\n## 보석금을 추가할 수감자의 수감번호를 입력해주세요.");
-        int addjewelTargetNum = inputInteger(">>> ");
+        int addBailTargetNum = inputInteger(">>> ");
 
-        Prison prison = prisonRepository.searchPrisonOne(addjewelTargetNum);
+        Prison prison = prisonRepository.searchPrisonOne(addBailTargetNum);
         if (prison != null){
             //수감자 정보 출력
             System.out.println(prison);
             System.out.println("얼마를 넣으시겠습니까?(만원)");
-            int insertJewelMoney = inputInteger(">>> ");
-            System.out.printf("%s쓰레기에게 %d만원을 넣으시겠습니까?\n", prison.getName(), insertJewelMoney);
+            int insertBailMoney = inputInteger(">>> ");
+            System.out.printf("%s 쓰레기에게 %d 만원을 넣으시겠습니까?\n", prison.getName(), insertBailMoney);
             System.out.println("\n[ 1. 예 | 2. 아니오 ]");
             int selection = inputInteger(">>> ");
             if (selection == 1) {
                 // 보석금 정보에 추가
-                prisonRepository.addBoilMoney(prison, insertJewelMoney);
+                prisonRepository.addBailMoney(prison, insertBailMoney);
                 System.out.printf("\n 수감번호 %d번의 보석금이 수정되었습니다.",prison.getPrisonerNumber());
                 System.out.printf("\n 총 누적 보석금 : %d만원\n", prison.getBailMoney() );
             }else {
@@ -75,8 +75,8 @@ public class BailController {
 
 
     /*//보석금 정보 검색 기능
-    private void showJewelryData(){
-
+    private void showBailData(){
+        searchAddBailMoney();
     }*/
 
 

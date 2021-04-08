@@ -32,9 +32,11 @@ public interface PrisonRepository {
 //    void minusJailTime(int jailTime);
 
     //보석금 추가
-    void addBoilMoney(Prison prison, int insertJewelMoney);
+    void addBailMoney(Prison prison, int insertBailMoney);
 
-    //보석금 추가된 수감자만 검색
-//    Prison searchAddBoilMoney(boolean boilMoneyData);
+    /*//보석금 추가된 수감자만 검색
+    private void searchAddBailMoney() {
+
+    }*/
     }
 

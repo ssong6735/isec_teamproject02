@@ -104,21 +104,21 @@ public class MemoryPrisonRepository implements PrisonRepository {
 
     //보석금 추가
     @Override
-    public void addBoilMoney(Prison prison, int insertJewelMoney) {
-        prison.setBailMoney(prison.getBailMoney() + insertJewelMoney);
+    public void addBailMoney(Prison prison, int insertBailMoney) {
+        prison.setBailMoney(prison.getBailMoney() + insertBailMoney);
     }
 
-    /*//보석금 추가된 수감자만 검색
-    @Override
-    public List<Prison> searchAddBoilMoney(int boilMoney) {
-        List<Prison> boilList = new ArrayList<>();
+
+    /*// 보석금 수감자 검색용 리스트
+    private List<Prison> searchAddBailMoney() {
+        List<Prison> bailList = new ArrayList<>();
         for (int key : prisonMemoryDB.keySet()) {
             Prison prison = prisonMemoryDB.get(key);
-            if (boilMoney > 0) {
-                boilList.add(prison);
+            if (prison.getBailMoney() > 0) {
+                bailList.add(prison);
             }
         }
-        return boilList;
+        return bailList;
     }*/
 
 
